@@ -18,7 +18,7 @@
 	<a href="${pageContext.request.contextPath }/mem/myinfo">내정보확인</a><br/>
 	<a href="${pageContext.request.contextPath }/mem/logout">로그아웃</a><br/>
 	<a href="${pageContext.request.contextPath }/mem/out">탈퇴</a><br/>
-	<a href="${pageContext.request.contextPath }/imgboard/list">이미지 글목록</a><br/>
+	<a href="${pageContext.request.contextPath }/dataroom/list">자료실</a><br/>
 </c:if>
 </body>
 </html>
