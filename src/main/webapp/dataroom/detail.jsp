@@ -15,11 +15,31 @@ const b = (type) => {
 	location.href = "${pageContext.request.contextPath }/dataroom/favo?num=${dr.num }&id=${sessionScope.loginId}&type=" + type;
 }
 
+const c = () => {
+	const req = new XMLHttpRequest();
+	req.onload = () => {
+		let arr = JSON.parse(req.responseText);
+		let txt = '';
+		for(let name of arr){
+			txt += name + "<br/>";
+		}
+		let div = document.getElementById('res');
+		div.innerHTML = txt;
+		div.style.display = '';
+	}
+	req.open('get', '${pageContext.request.contextPath }/dataroom/favoget?num=${dr.num }');
+	req.send();
+}
+
+const d = () => {
+	let div = document.getElementById('res');
+	div.style.display = 'none';
+}
 </script>
 </head>
 <body>
 <h3>상세 페이지</h3>
-<div id="res" style="border:1px solid blue;display:none;position:absolute;top:100px;left:200px"></div>
+<div id="res" style="border:1px solid blue;display:none;position:absolute;top:100px;left:200px;z-index:1;"></div>
 <a href="${pageContext.request.contextPath }/dataroom/list">LIST</a><br/>
 <form action="${pageContext.request.contextPath }/dataroom/detail" method="post" name="f">
 <input type="hidden" name="dataroom" value="${dr.fname }">
@@ -47,7 +67,7 @@ const b = (type) => {
 </tr>
 <tr>
 <th>FAVORITE CNT</th>
-<td>${dr.fcnt }
+ <td onmouseover="c()" onmouseout="d()">${dr.fcnt }
 <c:if test="${flag }"><input type="button" value="좋아요 취소" onclick="b(2)"></c:if>
 <c:if test="${not flag }"><input type="button" value="좋아요" onclick="b(1)"></c:if>
 </td>
